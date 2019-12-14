@@ -16,6 +16,7 @@ resource "aws_launch_configuration" "asg-config" {
 
 resource "aws_security_group" "asg-sg" {
   name = var.asg_sg_name
+
   dynamic "ingress" {
     for_each = var.asg_sg_ingress
       content {
@@ -46,7 +47,7 @@ data "aws_availability_zones" "all" {}
 resource "aws_autoscaling_group" "test-asg" {
   launch_configuration    = aws_launch_configuration.asg-config.id
   availability_zones      = data.aws_availability_zones.all.names
-  health_check_type       = "ELB"
+  health_check_type       = "EC2"
   min_size                = 1
   desired_capacity        = 2
   max_size                = 3
