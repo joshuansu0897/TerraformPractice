@@ -1,5 +1,5 @@
 provider "aws" {
-    region=var.region
+  region=var.region
 }
 
 resource "aws_launch_configuration" "asg-config" {
@@ -7,20 +7,32 @@ resource "aws_launch_configuration" "asg-config" {
   instance_type   = var.instance_type
   security_groups=["${aws_security_group.asg-sg.name}"]
 
+  user_data = file("start-app.sh")
+
   lifecycle {
     create_before_destroy = true
   }
 }
 
 resource "aws_security_group" "asg-sg" {
-  name = var.ssh_conection_name
+  name = var.asg_sg_name
   dynamic "ingress" {
-    for_each = var.ssh_conection_ingress
+    for_each = var.asg_sg_ingress
       content {
         from_port=ingress.value.from_port
         to_port=ingress.value.to_port
         protocol=ingress.value.protocol
         cidr_blocks=ingress.value.cidr_blocks
+      }
+  }
+
+  dynamic "egress" {
+    for_each = var.asg_sg_egress
+      content {
+        from_port=egress.value.from_port
+        to_port=egress.value.to_port
+        protocol=egress.value.protocol
+        cidr_blocks=egress.value.cidr_blocks
       }
   }
 
@@ -43,5 +55,9 @@ resource "aws_autoscaling_group" "test-asg" {
     key = "Name"
     propagate_at_launch = true
     value = "my-terraform-asg-example"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }

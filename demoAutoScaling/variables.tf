@@ -10,10 +10,14 @@ variable "region" {
   description = "Region on AWS to Deploy"
 }
 
-variable "ssh_conection_name" {
-  description = "Is the name of ssh_conection"
+variable "asg_sg_name" {
+  description = "Is the name of aws_launch_configuration"
 }
 
-variable "ssh_conection_ingress" {
-  description = "Ingress Rules to ssh_conection"
+variable "asg_sg_ingress" {
+  description = "Ingress Rules to aws_launch_configuration"
+}
+
+variable "asg_sg_egress" {
+  description = "Egress Rules to aws_launch_configuration"
 }
