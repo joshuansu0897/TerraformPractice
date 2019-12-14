@@ -1,4 +1,4 @@
-ami_id="ami-0267191abd0165f0e"
+ami_id="ami-0fe19d8fa087fbccd"
 instance_type="t2.micro"
 region="us-east-2"
 asg_sg_name="demo-rules"
