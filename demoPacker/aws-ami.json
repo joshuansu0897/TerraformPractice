@@ -37,6 +37,14 @@
         {
             "type": "shell",
             "script": "./scripts/install-docker.sh"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "git clone https://github.com/joshuansu0897/TerraformPractice.git",
+                "cd TerraformPractice/demoDocker",
+                "sudo docker build -t app ."
+            ]
         }
     ],
     "post-processors": [
