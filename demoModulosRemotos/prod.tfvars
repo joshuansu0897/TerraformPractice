@@ -1,0 +1,22 @@
+ami_id="ami-0fe19d8fa087fbccd"
+instance_type="t2.micro"
+tags={
+    Name="practica1",
+    Enviroment="Prod"
+}
+region="us-east-2"
+ssh_conection_name="demo-rules"
+ssh_conection_ingress=[
+    {
+        from_port=22
+        to_port=22
+        protocol="tcp"
+        cidr_blocks=["0.0.0.0/0"]
+    },
+    {
+        from_port=80
+        to_port=80
+        protocol="tcp"
+        cidr_blocks=["0.0.0.0/0"]
+    }
+]
