@@ -59,3 +59,23 @@ variable "public_elb_name" {
   #type = "string"
   description = "Is the name of security groups of public_subnet"
 }
+
+variable "private_sg_name" {
+  #type = "string"
+  description = "Is the name of security groups of private_subnet"
+}
+
+variable "private_sg_ingress" {
+  #type = "list"
+  description = "Ingress Rules to private_subnet"
+}
+
+variable "private_sg_egress" {
+  #type = "list"
+  description = "Egress Rules to public_subnet"
+}
+
+variable "private_elb_name" {
+  #type = "string"
+  description = "Is the name of security groups of private_subnet"
+}
