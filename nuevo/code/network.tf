@@ -47,7 +47,7 @@ resource "aws_route_table" "route_table_private" {
   }
 
   tags = {
-    Name = "BackEnd Subnet"
+    Name = "BackEnd Subnet - ${count.index + 1}"
   }
 }
 
