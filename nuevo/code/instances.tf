@@ -130,6 +130,7 @@ resource "aws_elb" "private_elb" {
   name = var.private_elb_name
   security_groups = ["${aws_security_group.private_sg.id}"]
   subnets = aws_subnet.private_subnets.*.id
+  internal = true
   
   health_check {
     healthy_threshold = 2
