@@ -22,6 +22,12 @@ data "aws_ami" "latest_ubuntu" {
   }
 }
 
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_file = "index.js"
+  output_path = "lambda_function.zip"
+}
+
 resource "aws_key_pair" "key_access" {
   key_name   = "key_access"
   public_key = file("../private/ssh/key_access.pub")
